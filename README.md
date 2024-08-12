@@ -1,19 +1,20 @@
 # Solid STOOL
 
-**S**ynchronized **T**ask **O**ffloading & **O**utput **L**ayer
+**S**ynchronized **T**ask **O**rganization for **O**perational **L**eadership
 
 [![Gem Version](https://badge.fury.io/rb/solid_stool.svg)](https://badge.fury.io/rb/solid_stool)
 [![Build Status](https://travis-ci.org/yourusername/solid_stool.svg?branch=main)](https://travis-ci.org/yourusername/solid_stool)
 
-Solid STOOL is a Ruby on Rails gem designed to keep your application's task pipeline regular and prevent any embarrassing data backups. It provides a robust system for storing, managing, and executing tasks in your Rails application.
+Solid STOOL is a Ruby on Rails gem designed to keep your administrative tasks flowing smoothly. It provides a robust system for creating, assigning, and managing tasks for admins of your Rails application.
 
 ## Features
 
-- Centralized task storage in your existing database
-- Admin interface for creating and managing tasks
-- Automated task scheduling and execution
-- Seamless integration with ActiveJob
-- Built-in monitoring and reporting tools
+- Centralized storage of administrative tasks in your existing database
+- User-friendly UI for creating, assigning, and managing admin tasks
+- Task prioritization and deadline management
+- Admin-to-admin task assignment capabilities
+- Built-in notification system for task updates
+- Reporting and analytics on task completion and efficiency
 
 ## Installation
 
@@ -29,12 +30,6 @@ Then execute:
 $ bundle install
 ```
 
-Or install it yourself as:
-
-```
-$ gem install solid_stool
-```
-
 ## Usage
 
 ### Basic Setup
@@ -47,48 +42,57 @@ $ rails generate solid_stool:install
 
 This will create the necessary migrations and configuration files.
 
-### Creating Tasks
+### Mounting the UI
 
-Use the admin interface to create tasks:
-
-```ruby
-SolidStool::Task.create(
-  name: 'Process Orders',
-  cron: '0 * * * *',
-  job_class: 'OrderProcessingJob'
-)
-```
-
-### Executing Tasks
-
-Solid STOOL automatically executes tasks based on their schedule. You can also manually trigger task execution:
-
-```ruby
-SolidStool::TaskExecutor.execute_all
-```
-
-## Admin Interface
-
-Solid STOOL comes with a built-in admin interface. To access it, mount the engine in your `config/routes.rb`:
+Mount the Solid STOOL engine in your `config/routes.rb`:
 
 ```ruby
 Rails.application.routes.draw do
-  mount SolidStool::Engine => "/solid_stool"
+  mount SolidStool::Engine => "/admin/tasks"
 end
 ```
 
-Then visit `/solid_stool` in your browser.
+Now you can access the admin task management UI at `/admin/tasks`.
+
+### Creating Tasks
+
+Admins can create tasks for themselves or other admins through the UI. Here's an example of how to programmatically create a task:
+
+```ruby
+SolidStool::Task.create(
+  title: 'Review New User Signups',
+  description: 'Check and approve new user registrations from the past 24 hours',
+  assigned_to: User.find_by(email: 'admin@example.com'),
+  due_date: 1.day.from_now,
+  priority: :high
+)
+```
+
+### Task Management
+
+Admins can view, edit, and complete tasks through the UI. They can also reassign tasks to other admins as needed.
 
 ## Configuration
 
-You can configure Solid STOOL in an initializer:
+Configure Solid STOOL in an initializer:
 
 ```ruby
 # config/initializers/solid_stool.rb
 SolidStool.configure do |config|
-  config.max_retention_period = 7.days
-  config.default_queue = :default
-  config.admin_auth = -> (request) { request.env["warden"].authenticate! }
+  config.admin_roles = ['super_admin', 'moderator']
+  config.notification_method = :email
+  config.task_categories = ['User Management', 'Content Moderation', 'System Maintenance']
+end
+```
+
+## Authorization
+
+By default, Solid STOOL checks for an `admin?` method on the current user. You can customize this behavior:
+
+```ruby
+# config/initializers/solid_stool.rb
+SolidStool.configure do |config|
+  config.admin_check = ->(user) { user.has_role?(:admin) || user.has_role?(:moderator) }
 end
 ```
 
@@ -102,6 +106,6 @@ The gem is available as open source under the terms of the [MIT License](https:/
 
 ## Acknowledgments
 
-Solid STOOL is inspired by the excellent [Solid Queue](https://github.com/basecamp/solid_queue) and [Solid Cache](https://github.com/rails/solid_cache) gems. We aim to provide a similarly robust and efficient solution for task management in Rails applications.
+Solid STOOL is inspired by the excellent [Solid Queue](https://github.com/basecamp/solid_queue) and [Solid Cache](https://github.com/rails/solid_cache) gems. We aim to provide a similarly robust and efficient solution for admin task management in Rails applications.
 
-Remember, with Solid STOOL, your Rails app will always maintain a healthy flow, from input to output!
+Remember, with Solid STOOL, your admin team will always maintain a healthy flow of tasks, ensuring nothing gets stuck in the pipeline!
