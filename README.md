@@ -3,7 +3,7 @@
 **S**ynchronized **T**ask **O**rganization for **O**perational **L**eadership
 
 [![Gem Version](https://badge.fury.io/rb/solid_stool.svg)](https://badge.fury.io/rb/solid_stool)
-[![Build Status](https://travis-ci.org/yourusername/solid_stool.svg?branch=main)](https://travis-ci.org/yourusername/solid_stool)
+[![Build Status](https://travis-ci.org/gremglee/solid_stool.svg?branch=main)](https://travis-ci.org/gremglee/solid_stool)
 
 Solid STOOL is a Ruby on Rails gem designed to keep your administrative tasks flowing smoothly. It provides a robust system for creating, assigning, and managing tasks for admins of your Rails application.
 
@@ -98,7 +98,7 @@ end
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/yourusername/solid_stool.
+Bug reports and pull requests are welcome on GitHub at https://github.com/gremglee/solid_stool.
 
 ## License
 
