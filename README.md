@@ -2,10 +2,16 @@
 
 **S**ynchronized **T**ask **O**rganization for **O**perational **L**eadership
 
+Solid STOOL is a Ruby on Rails gem designed to keep your administrative tasks flowing smoothly. It provides a robust system for creating, assigning, and managing tasks for admins of your Rails application.
+
+## Acknowledgments
+
+Solid STOOL is inspired by the excellent [Solid Queue](https://github.com/basecamp/solid_queue) and [Solid Cache](https://github.com/rails/solid_cache) gems. We aim to provide a similarly robust and efficient solution for admin task management in Rails applications.
+
+Remember, with Solid STOOL, your admin team will always maintain a healthy flow of tasks, ensuring nothing gets stuck in the pipeline!
+
 [![Gem Version](https://badge.fury.io/rb/solid_stool.svg)](https://badge.fury.io/rb/solid_stool)
 [![Build Status](https://travis-ci.org/gremglee/solid_stool.svg?branch=main)](https://travis-ci.org/gremglee/solid_stool)
-
-Solid STOOL is a Ruby on Rails gem designed to keep your administrative tasks flowing smoothly. It provides a robust system for creating, assigning, and managing tasks for admins of your Rails application.
 
 ## Features
 
@@ -103,9 +109,3 @@ Bug reports and pull requests are welcome on GitHub at https://github.com/gremgl
 ## License
 
 The gem is available as open source under the terms of the [MIT License](https://opensource.org/licenses/MIT).
-
-## Acknowledgments
-
-Solid STOOL is inspired by the excellent [Solid Queue](https://github.com/basecamp/solid_queue) and [Solid Cache](https://github.com/rails/solid_cache) gems. We aim to provide a similarly robust and efficient solution for admin task management in Rails applications.
-
-Remember, with Solid STOOL, your admin team will always maintain a healthy flow of tasks, ensuring nothing gets stuck in the pipeline!
