@@ -1,3 +1,3 @@
 # Contributor Covenant Code of Conduct
 
-Just don't refer to this gem as "shit" and you'll be fine.
+Just don't call it "solid shit" and you'll be fine.
